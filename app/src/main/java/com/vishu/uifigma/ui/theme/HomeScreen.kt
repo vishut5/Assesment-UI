@@ -30,7 +30,7 @@ fun HomeScreen(navController: NavController) {
     Scaffold(
         topBar = {
             TopAppBar(
-                backgroundColor = Color.Blue,
+                backgroundColor = colorResource(id = R.color.splash_background),
                 contentColor = Color.White,
                 elevation = 4.dp
             ) {
@@ -68,7 +68,9 @@ fun HomeScreen(navController: NavController) {
                 Image(
                     painter = painterResource(id = R.drawable.main),
                     contentDescription = "Welcome Image",
-                    modifier = Modifier.size(200.dp).align(Alignment.CenterHorizontally)
+                    modifier = Modifier
+                        .size(200.dp)
+                        .align(Alignment.CenterHorizontally)
 
                 )
 
@@ -104,8 +106,8 @@ fun HomeScreen(navController: NavController) {
 
             Box(
                 modifier = Modifier
-                    .align(Alignment.BottomCenter)
-                    .padding(horizontal = 16.dp)
+                    .fillMaxWidth().align(Alignment.BottomEnd)
+                    .padding(bottom = 16.dp)
             ) {
                 Column(
                     modifier = Modifier
@@ -115,18 +117,17 @@ fun HomeScreen(navController: NavController) {
                             shape = RoundedCornerShape(topStart = 40.dp, topEnd = 40.dp)
                         )
                         .padding(16.dp)
-                        .height(120.dp),
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.Center
+                        .height(120.dp).fillMaxWidth()
+
                 ) {
                     androidx.compose.material3.Button(
                         onClick = { /* Handle Login */ },
                         modifier = Modifier
-                            .fillMaxWidth()
+                            .fillMaxWidth().align(Alignment.CenterHorizontally)
                             .height(55.dp),
                         colors = ButtonDefaults.buttonColors(
-                            containerColor = Color(0xFFFFFFFF),
-                            contentColor = Color.White
+                            containerColor = Color.White,
+                            contentColor = Color.Black
                         ),
                         shape = RoundedCornerShape(14.dp)
                     ) {
@@ -137,7 +138,6 @@ fun HomeScreen(navController: NavController) {
         }
     }
 }
-
 @Composable
 fun FeatureButton(text: String, icon: Int, onClick: () -> Unit) {
     Card(
@@ -161,7 +161,13 @@ fun FeatureButton(text: String, icon: Int, onClick: () -> Unit) {
                 modifier = Modifier.size(40.dp)
             )
             Spacer(modifier = Modifier.height(8.dp))
-            Text(text = text, fontSize = 10.sp, color = Color.Black)
+            Text(
+                text = text,
+                fontSize = 10.sp,
+                color = Color.Black,
+                textAlign = androidx.compose.ui.text.style.TextAlign.Center,
+                modifier = Modifier.fillMaxWidth()
+            )
         }
     }
 }
