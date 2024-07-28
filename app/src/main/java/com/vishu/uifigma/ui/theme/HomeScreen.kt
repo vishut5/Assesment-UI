@@ -39,7 +39,7 @@ fun HomeScreen(navController: NavController) {
         floatingActionButton = {
             FloatingActionButton(
                 modifier = Modifier.padding(bottom = 130.dp),
-                backgroundColor = colorResource(id = R.color.purple_200),
+                backgroundColor = colorResource(id = R.color.white),
                 onClick = {
                     Toast.makeText(context, "HELLO , I am chatBot", Toast.LENGTH_LONG).show()
                 }
@@ -55,7 +55,7 @@ fun HomeScreen(navController: NavController) {
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(16.dp)
+               // .padding(16.dp)
         ) {
             Column(
                 modifier = Modifier
@@ -98,28 +98,24 @@ fun HomeScreen(navController: NavController) {
                 }
             }
 
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .align(Alignment.BottomEnd)
-                    //.padding(top = 16.dp)
-            ) {
+
                 Column(
                     modifier = Modifier
-                        .fillMaxWidth()
+                        .fillMaxWidth().align(Alignment.BottomEnd)
                         .background(
                             color = colorResource(id = R.color.splash_background),
                             shape = RoundedCornerShape(topStart = 40.dp, topEnd = 40.dp)
                         )
-                       .padding( 16.dp)
-                        .height(120.dp)
+                        .padding(16.dp)
+                        .height(150.dp)
                 ) {
                     androidx.compose.material3.Button(
                         onClick = { /* Handle Login */ },
                         modifier = Modifier
                             .fillMaxWidth()
                             .align(Alignment.CenterHorizontally)
-                            .height(70.dp).padding(top = 16.dp),
+                            .height(70.dp)
+                            .padding(top = 25.dp),
                         colors = ButtonDefaults.buttonColors(
                             containerColor = Color.White,
                             contentColor = Color.Black
@@ -132,7 +128,7 @@ fun HomeScreen(navController: NavController) {
             }
         }
     }
-}
+
 
 @Composable
 fun FeatureButton(text: String, icon: Int, onClick: () -> Unit) {
