@@ -16,8 +16,12 @@ fun NavGraph(navController: NavHostController, modifier: Modifier =  Modifier) {
         composable("onboard1") {
             OnBoard1(navController)
         }
+        composable("onboard2") {
+            OnBoard2(navController)
+        }
         composable("home") {
             HomeScreen(navController)
         }
+
     }
 }

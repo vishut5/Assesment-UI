@@ -1,6 +1,7 @@
 package com.vishu.uifigma
 
 import android.annotation.SuppressLint
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -17,39 +18,37 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 
-
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun HomeScreen(navController: NavController) {
+    val context = LocalContext.current
     Scaffold(
+        modifier = Modifier.statusBarsPadding(),
         topBar = {
-            TopAppBar(
-                backgroundColor = colorResource(id = R.color.splash_background),
-                contentColor = Color.White,
-                elevation = 4.dp
-            ) {
-                Row(
-                    modifier = Modifier
-                        .fillMaxHeight()
-                        .padding(horizontal = 16.dp),
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    IconButton(onClick = { /* Handle Menu Click */ }) {
-                        Icon(imageVector = Icons.Default.Menu, contentDescription = "Menu")
-                    }
-                    Spacer(modifier = Modifier.width(16.dp))
-                    Image(
-                        painter = painterResource(id = R.drawable.aman),
-                        contentDescription = "Aman Bank Logo",
-                        modifier = Modifier.size(60.dp) // Adjust size for better visibility
-                    )
+            TopBar(
+                onBackNavClicked = { Toast.makeText(context, "Menu", Toast.LENGTH_LONG).show() }
+            )
+        },
+        floatingActionButton = {
+            FloatingActionButton(
+                modifier = Modifier.padding(bottom = 130.dp),
+                backgroundColor = colorResource(id = R.color.purple_200),
+                onClick = {
+                    Toast.makeText(context, "HELLO , I am chatBot", Toast.LENGTH_LONG).show()
                 }
+            ) {
+                Image(
+                    painter = painterResource(id = R.drawable.chatbot),
+                    contentDescription = null,
+                    modifier = Modifier.size(25.dp)
+                )
             }
         }
     ) {
@@ -63,15 +62,13 @@ fun HomeScreen(navController: NavController) {
                     .fillMaxSize()
                     .padding(bottom = 80.dp),
                 verticalArrangement = Arrangement.spacedBy(16.dp),
-
             ) {
                 Image(
                     painter = painterResource(id = R.drawable.main),
                     contentDescription = "Welcome Image",
                     modifier = Modifier
-                        .size(200.dp)
+                        .size(250.dp)
                         .align(Alignment.CenterHorizontally)
-
                 )
 
                 Text(
@@ -79,16 +76,14 @@ fun HomeScreen(navController: NavController) {
                     style = MaterialTheme.typography.h5.copy(fontSize = 22.sp),
                     color = Color.Black,
                     modifier = Modifier.align(Alignment.CenterHorizontally)
-
                 )
-
 
                 LazyVerticalGrid(
                     columns = GridCells.Fixed(3),
                     contentPadding = PaddingValues(8.dp),
                     horizontalArrangement = Arrangement.spacedBy(16.dp),
                     verticalArrangement = Arrangement.spacedBy(16.dp),
-                    modifier = Modifier.weight(1f) // Make grid take available space
+                    modifier = Modifier.weight(1f).padding(top = 30.dp)
                 ) {
                     items(6) { index ->
                         when (index) {
@@ -103,28 +98,28 @@ fun HomeScreen(navController: NavController) {
                 }
             }
 
-
             Box(
                 modifier = Modifier
-                    .fillMaxWidth().align(Alignment.BottomEnd)
-                    .padding(bottom = 16.dp)
+                    .fillMaxWidth()
+                    .align(Alignment.BottomEnd)
+                    //.padding(top = 16.dp)
             ) {
                 Column(
                     modifier = Modifier
-                        .fillMaxWidth() // Fill max width
+                        .fillMaxWidth()
                         .background(
                             color = colorResource(id = R.color.splash_background),
                             shape = RoundedCornerShape(topStart = 40.dp, topEnd = 40.dp)
                         )
-                        .padding(16.dp)
-                        .height(120.dp).fillMaxWidth()
-
+                       .padding( 16.dp)
+                        .height(120.dp)
                 ) {
                     androidx.compose.material3.Button(
                         onClick = { /* Handle Login */ },
                         modifier = Modifier
-                            .fillMaxWidth().align(Alignment.CenterHorizontally)
-                            .height(55.dp),
+                            .fillMaxWidth()
+                            .align(Alignment.CenterHorizontally)
+                            .height(70.dp).padding(top = 16.dp),
                         colors = ButtonDefaults.buttonColors(
                             containerColor = Color.White,
                             contentColor = Color.Black
@@ -138,6 +133,7 @@ fun HomeScreen(navController: NavController) {
         }
     }
 }
+
 @Composable
 fun FeatureButton(text: String, icon: Int, onClick: () -> Unit) {
     Card(
@@ -170,4 +166,31 @@ fun FeatureButton(text: String, icon: Int, onClick: () -> Unit) {
             )
         }
     }
+}
+
+@Composable
+fun TopBar(
+    onBackNavClicked: () -> Unit = {}
+) {
+    TopAppBar(
+        title = {
+            Image(
+                painter = painterResource(id = R.drawable.aman),
+                contentDescription = "Logo",
+                modifier = Modifier
+                    .heightIn(max = 30.dp)
+            )
+        },
+        elevation = 3.dp,
+        backgroundColor = colorResource(id = R.color.splash_background),
+        navigationIcon = {
+            IconButton(onClick = { onBackNavClicked() }) {
+                Icon(
+                    imageVector = Icons.Filled.Menu,
+                    tint = Color.White,
+                    contentDescription = null
+                )
+            }
+        }
+    )
 }

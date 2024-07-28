@@ -4,19 +4,15 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.Divider
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -27,14 +23,12 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 
 @Composable
-fun OnBoard1(navController: NavHostController) {
+fun OnBoard2(navController: NavHostController) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -61,16 +55,16 @@ fun OnBoard1(navController: NavHostController) {
             )
             Spacer(modifier = Modifier.height(8.dp))
             Text(
-                text = "Welcome to Amanbanks",
+                text = "Manage your Finance",
                 fontSize = 25.sp,
                 color = colorResource(id = R.color.white)
             )
             Spacer(modifier = Modifier.height(5.dp))
             Text(
-                text = "Your best selection for financial transaction.",
-                fontSize = 8.sp,
+                text = "Your finances at your fingertips.",
+                fontSize = 10.sp,
                 maxLines = 1,
-                modifier = Modifier.wrapContentSize(),
+                modifier = Modifier.padding(horizontal = 20.dp),
                 color = colorResource(id = R.color.white)
             )
             Spacer(modifier = Modifier.height(70.dp))
@@ -86,7 +80,7 @@ fun OnBoard1(navController: NavHostController) {
             verticalArrangement = Arrangement.Center
         ) {
             Button(
-                onClick = {  },
+                onClick = { navController.navigate("home") },
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(top = 80.dp, start = 60.dp, end = 60.dp, bottom = 20.dp)
@@ -99,35 +93,6 @@ fun OnBoard1(navController: NavHostController) {
             ) {
                 Text(text = "Log In")
             }
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth(),
-                horizontalArrangement = Arrangement.Center,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Divider(
-                    color = Color.Gray,
-                    thickness = 1.dp,
-                    modifier = Modifier.weight(1f).padding(start = 60.dp)
-                )
-
-                Spacer(modifier = Modifier.width(8.dp))
-
-                Text(
-                    text = "Or",
-                    modifier = Modifier.padding(vertical = 8.dp),
-                    textAlign = TextAlign.Center
-                )
-
-                Spacer(modifier = Modifier.width(8.dp))
-
-                Divider(
-                    color = Color.Gray,
-                    thickness = 1.dp,
-                    modifier = Modifier.weight(1f).padding(end = 60.dp)
-                )
-            }
-
 
             TextButton(
                 onClick = { navController.navigate("home") }
@@ -139,10 +104,6 @@ fun OnBoard1(navController: NavHostController) {
                     )
                 )
             }
-
         }
-
     }
-
-
 }

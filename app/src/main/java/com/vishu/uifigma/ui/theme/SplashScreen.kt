@@ -19,6 +19,8 @@ import androidx.compose.ui.graphics.luminance
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
@@ -62,7 +64,10 @@ fun SplashScreen(navController: NavHostController) {
         Text(
             text = "Secured by AMAN BANK",
             modifier = Modifier.padding(top = 750.dp, bottom = 20.dp),
-            color = colorResource(id = R.color.white)
+            color = colorResource(id = R.color.white),
+            style = TextStyle(
+                fontFamily = FontFamily.SansSerif
+            )
         )
     }
 }
